@@ -324,7 +324,7 @@ Switch when:
 ## Use Cases
 
 - Red Team Operations  
-- Adversary Emulation (ART)  
+- Adversary Emulation
 - Internal Recon  
 - Segmented Enterprise Networks  
 - OT / ICS Environments  
