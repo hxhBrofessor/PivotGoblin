@@ -33,7 +33,7 @@ That resource provides foundational SSH tradecraft.
 
 ## Core Design Philosophy
 
-Pivot2 follows a layered pivoting model:
+Pivot follows a layered pivoting model:
 
 | Layer       | Method    | Use Case                          |
 |------------|----------|-----------------------------------|
@@ -203,7 +203,7 @@ Enables:
 ### Route Discovery
 
 ```bash
-./pivot2.sh routes user target_host
+./pivot.sh routes user target_host
 ```
 
 ---
@@ -219,7 +219,7 @@ Enables:
 ### One-Command Pivot
 
 ```bash
-./pivot2.sh full user target_host
+./pivot.sh full user target_host
 ```
 
 ---
