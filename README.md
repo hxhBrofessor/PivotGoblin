@@ -1,4 +1,4 @@
-# Pivot-MERP
+# PivotGoblin
 
 > **Modular, operator-focused SSH pivoting framework for red teamers and penetration testers**
 
@@ -6,7 +6,25 @@
 
 ## Overview
 
-**Pivot-MERP** is a lightweight, operator-friendly framework for managing SSH-based pivots during red team engagements and penetration tests.
+```
+ ██████╗ ██╗██╗   ██╗ ██████╗ ████████╗
+ ██╔══██╗██║██║   ██║██╔═══██╗╚══██╔══╝
+ ██████╔╝██║██║   ██║██║   ██║   ██║   
+ ██╔═══╝ ██║╚██╗ ██╔╝██║   ██║   ██║   
+ ██║     ██║ ╚████╔╝ ╚██████╔╝   ██║   
+ ╚═╝     ╚═╝  ╚═══╝   ╚═════╝    ╚═╝   
+  ██████╗  ██████╗ ██████╗ ██╗     ██╗███╗   ██╗
+ ██╔════╝ ██╔═══██╗██╔══██╗██║     ██║████╗  ██║
+ ██║  ███╗██║   ██║██████╔╝██║     ██║██╔██╗ ██║
+ ██║   ██║██║   ██║██╔══██╗██║     ██║██║╚██╗██║
+ ╚██████╔╝╚██████╔╝██████╔╝███████╗██║██║ ╚████║
+  ╚═════╝  ╚═════╝ ╚═════╝ ╚══════╝╚═╝╚═╝  ╚═══╝
+
+  "I am not here to save you. I am here to slay networks."
+  hxhBrofessor  //  Cyber Warfare  //  Pivot Goblin
+```
+
+**PivotGoblin** is a lightweight, operator-friendly framework for managing SSH-based pivots during red team engagements and penetration tests.
 
 It simplifies:
 
@@ -97,8 +115,8 @@ Output:
 ## Installation
 
 ```bash
-git clone https://github.com/hxhBrofessor/Pivot-merp.git
-cd Pivot-merp
+git clone https://github.com/hxhBrofessor/PivotGoblin.git
+cd PivotGoblin
 chmod +x pivot.sh
 ```
 
@@ -435,7 +453,7 @@ This tool is intended for:
 ## Author
 
 **hxhBrofessor**
-Cyber Warfare | Red Team | Pivot Goblin
+Cyber Warfare | Red Team | Pivot Goblin 👺
 
 ---
 
