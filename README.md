@@ -129,7 +129,7 @@ Example:
 
 ---
 
-### 🧦 SOCKS Proxy
+### SOCKS Proxy
 
 ```bash
 ./pivot.sh socks <user> <target> <port>
