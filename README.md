@@ -14,7 +14,7 @@ It simplifies:
 * SSH tunneling (local & remote)
 * Multi-hop pivoting
 * Transparent routing with `sshuttle`
-* **Automatic network discovery (NEW)**
+* Automatic network discovery
 * Session tracking & cleanup
 
 Built for **real-world operations**, not just lab demos.
