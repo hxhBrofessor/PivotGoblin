@@ -66,7 +66,7 @@ The pivot host itself is **automatically excluded** from tunnel routes to preven
 Example:
 
 ```bash
-./pivot.sh sshuttle kali 10.42.87.14 auto --dns
+./pivotGoblin.sh sshuttle kali 10.42.87.14 auto --dns
 ```
 
 Output:
@@ -117,13 +117,13 @@ Output:
 ```bash
 git clone https://github.com/hxhBrofessor/PivotGoblin.git
 cd PivotGoblin
-chmod +x pivot.sh
+chmod +x pivotGoblin.sh
 ```
 
 Optional (add to PATH):
 
 ```bash
-sudo ln -s $(pwd)/pivot.sh /usr/local/bin/pivot
+sudo ln -s $(pwd)/pivotGoblin.sh /usr/local/bin/pivot
 ```
 
 ---
@@ -142,7 +142,7 @@ ssh-add /path/to/your/private_key
 ssh-add -l
 
 # Now run pivot — zero password prompts
-./pivot.sh sshuttle kali 10.42.87.14 auto --dns
+./pivotGoblin.sh sshuttle kali 10.42.87.14 auto --dns
 ```
 
 With `ssh-agent` loaded, both the control session and sshuttle's subprocess will authenticate silently via the agent. This is the recommended approach for real engagements.
@@ -152,7 +152,7 @@ With `ssh-agent` loaded, both the control session and sshuttle's subprocess will
 ## Usage
 
 ```bash
-./pivot.sh [--insecure] <mode> <user> <target> [options]
+./pivotGoblin.sh [--insecure] <mode> <user> <target> [options]
 ```
 
 > **Do not run the entire script as root.** sshuttle requires elevated privileges for firewall rules — the script handles this automatically via an internal `sudo` call. Running as root will break path handling.
@@ -170,7 +170,7 @@ jump1,jump2,target
 Example:
 
 ```bash
-./pivot.sh socks kali jump1,jump2,internal-host 1080
+./pivotGoblin.sh socks kali jump1,jump2,internal-host 1080
 ```
 
 ---
@@ -182,7 +182,7 @@ Example:
 ### SOCKS Proxy
 
 ```bash
-./pivot.sh socks <user> <target> [port]
+./pivotGoblin.sh socks <user> <target> [port]
 ```
 
 * Default port: `1080`
@@ -194,17 +194,17 @@ Example:
 ### Transparent Pivot (sshuttle)
 
 ```bash
-./pivot.sh sshuttle <user> <target> [auto|cidr] [--dns] [--auto-nets]
+./pivotGoblin.sh sshuttle <user> <target> [auto|cidr] [--dns] [--auto-nets]
 ```
 
 Examples:
 
 ```bash
 # Auto-discovery (recommended)
-./pivot.sh sshuttle kali 10.42.87.14 auto --dns
+./pivotGoblin.sh sshuttle kali 10.42.87.14 auto --dns
 
 # Manual subnet
-./pivot.sh sshuttle kali 10.42.87.14 172.16.0.0/12 --dns
+./pivotGoblin.sh sshuttle kali 10.42.87.14 172.16.0.0/12 --dns
 ```
 
 **Notes:**
@@ -218,7 +218,7 @@ Examples:
 ### Local Port Forward
 
 ```bash
-./pivot.sh local <user> <target> <lport> <rhost> <rport> [lbind]
+./pivotGoblin.sh local <user> <target> <lport> <rhost> <rport> [lbind]
 ```
 
 Forwards `lbind:lport` on your local machine to `rhost:rport` through the tunnel.
@@ -226,7 +226,7 @@ Forwards `lbind:lport` on your local machine to `rhost:rport` through the tunnel
 Example — access an internal web server on port 80:
 
 ```bash
-./pivot.sh local kali 10.42.87.14 8080 192.168.45.22 80
+./pivotGoblin.sh local kali 10.42.87.14 8080 192.168.45.22 80
 # Then browse to http://127.0.0.1:8080
 ```
 
@@ -237,7 +237,7 @@ Default `lbind` is `127.0.0.1`. Pass a different bind address to expose the forw
 ### Remote Port Forward
 
 ```bash
-./pivot.sh remote <user> <target> <rport> <lhost> <lport> [rbind]
+./pivotGoblin.sh remote <user> <target> <rport> <lhost> <lport> [rbind]
 ```
 
 Binds `rbind:rport` on the remote target back to `lhost:lport` on your machine.
@@ -245,7 +245,7 @@ Binds `rbind:rport` on the remote target back to `lhost:lport` on your machine.
 Example — expose your local listener to the pivot host:
 
 ```bash
-./pivot.sh remote kali 10.42.87.14 4444 127.0.0.1 4444
+./pivotGoblin.sh remote kali 10.42.87.14 4444 127.0.0.1 4444
 # Target can now reach your listener at 127.0.0.1:4444 via its own port 4444
 ```
 
@@ -260,7 +260,7 @@ Default `rbind` is `127.0.0.1`. Note that remote bind addresses other than `127.
 ### Status
 
 ```bash
-./pivot.sh status
+./pivotGoblin.sh status
 ```
 
 Displays all tracked sessions including mode, target chain, ports/routes, and live health check (UP/DOWN).
@@ -270,7 +270,7 @@ Displays all tracked sessions including mode, target chain, ports/routes, and li
 ### Stop a Specific Session
 
 ```bash
-./pivot.sh stop <user> <target>
+./pivotGoblin.sh stop <user> <target>
 ```
 
 ---
@@ -278,7 +278,7 @@ Displays all tracked sessions including mode, target chain, ports/routes, and li
 ### Stop All Sessions
 
 ```bash
-./pivot.sh stop all
+./pivotGoblin.sh stop all
 ```
 
 Cleanly tears down all managed pivots and removes stale sockets and metadata.
@@ -304,16 +304,16 @@ These variables can be set before running the script to modify behavior without 
 
 ```bash
 # Debug a failing sshuttle tunnel
-SSHUTTLE_DEBUG=1 ./pivot.sh sshuttle kali 10.42.87.14 auto --dns
+SSHUTTLE_DEBUG=1 ./pivotGoblin.sh sshuttle kali 10.42.87.14 auto --dns
 
 # Use nftables instead of iptables (modern Debian/Ubuntu/Fedora)
-SSHUTTLE_FALLBACK_METHODS="nft" ./pivot.sh sshuttle kali 10.42.87.14 auto --dns
+SSHUTTLE_FALLBACK_METHODS="nft" ./pivotGoblin.sh sshuttle kali 10.42.87.14 auto --dns
 
 # Validate traffic reaches an internal host after tunnel starts
-PIVOT_VERIFY_HOST=192.168.45.1 PIVOT_VERIFY_PORT=80 ./pivot.sh sshuttle kali 10.42.87.14 auto --dns
+PIVOT_VERIFY_HOST=192.168.45.1 PIVOT_VERIFY_PORT=80 ./pivotGoblin.sh sshuttle kali 10.42.87.14 auto --dns
 
 # Skip the /24 fallback guess (stricter auto-discovery)
-AUTO_INCLUDE_GUESSES=0 ./pivot.sh sshuttle kali 10.42.87.14 auto --dns
+AUTO_INCLUDE_GUESSES=0 ./pivotGoblin.sh sshuttle kali 10.42.87.14 auto --dns
 ```
 
 ---
@@ -352,24 +352,24 @@ Set upstream proxy to:
 ssh-add ~/.ssh/id_rsa
 
 # 1. Start transparent pivot with auto-discovery
-./pivot.sh sshuttle kali 10.42.87.14 auto --dns
+./pivotGoblin.sh sshuttle kali 10.42.87.14 auto --dns
 
 # 2. Verify tunnel is healthy
-./pivot.sh status
+./pivotGoblin.sh status
 
 # 3. Use tools directly — no proxychains needed with sshuttle
 nmap -Pn -sT 192.168.45.0/24
 curl http://172.16.33.9/
 
 # 4. Add a SOCKS proxy on top for tools that need it
-./pivot.sh socks kali 10.42.87.14 1080
+./pivotGoblin.sh socks kali 10.42.87.14 1080
 proxychains firefox
 
 # 5. Expose a specific internal port locally
-./pivot.sh local kali 10.42.87.14 8080 192.168.45.22 80
+./pivotGoblin.sh local kali 10.42.87.14 8080 192.168.45.22 80
 
 # 6. Cleanup everything
-./pivot.sh stop all
+./pivotGoblin.sh stop all
 ```
 
 ---
@@ -383,7 +383,7 @@ proxychains firefox
 Enable debug mode to see the full output:
 
 ```bash
-SSHUTTLE_DEBUG=1 ./pivot.sh sshuttle kali <target> auto --dns
+SSHUTTLE_DEBUG=1 ./pivotGoblin.sh sshuttle kali <target> auto --dns
 ```
 
 Common causes:
@@ -398,7 +398,7 @@ Common causes:
 Pass `--dns` to route DNS through the tunnel:
 
 ```bash
-./pivot.sh sshuttle kali <target> auto --dns
+./pivotGoblin.sh sshuttle kali <target> auto --dns
 ```
 
 ---
@@ -420,7 +420,7 @@ Expected behavior when using password auth. See the [Reducing Password Prompts](
 If sshuttle fails with iptables errors on Debian 12+, Ubuntu 22.04+, or Fedora:
 
 ```bash
-SSHUTTLE_FALLBACK_METHODS="nft" ./pivot.sh sshuttle kali <target> auto --dns
+SSHUTTLE_FALLBACK_METHODS="nft" ./pivotGoblin.sh sshuttle kali <target> auto --dns
 ```
 
 ---
